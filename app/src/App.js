@@ -71,29 +71,21 @@ const App = () => {
   return (
     <Router>
       <div id="wrapper">
-        {currentUser && <NavBar />}
+        <NavBar />
         <Routes>
           <Route path="/testing250524/login" element={<Login />} />
           <Route path="/testing250524/sign-up" element={<Signup />} />
           <Route path="/testing250524/resetPassword" element={<ResetPassword />} />
-
-          {currentUser ? (
-            <>
-              <Route path="/testing250524/" element={<Home />} />
-              <Route path="/testing250524/home" element={<Home />} />
-              <Route path="/testing250524/about" element={<About />} />
-              <Route path="/testing250524/shop" element={<Shop />} />
-              <Route path="/testing250524/explore" element={<Explore />} />
-              <Route path="/testing250524/shop/product/:item_id" element={<ProductDetails />} />
-              <Route path="/testing250524/profile/:username" element={<UserDetails currentUser={currentUser} />} />
-              <Route path="/testing250524/settings" element={<UserSettings />} />
-              <Route path="/testing250524/cart" element={<UserCart />} />
-              <Route path="/testing250524/search" element={<SearchResults />} />
-            </>
-          ) : (
-            <Route path="/testing250524/" element={<Navigate to="/testing250524/login" />} />
-          )}
-
+            <Route path="/testing250524/" element={<Home />} />
+            <Route path="/testing250524/home" element={<Home />} />
+            <Route path="/testing250524/about" element={<About />} />
+            <Route path="/testing250524/shop" element={<Shop />} />
+            <Route path="/testing250524/explore" element={<Explore />} />
+            <Route path="/testing250524/shop/product/:item_id" element={<ProductDetails />} />
+            <Route path="/testing250524/profile/:username" element={<UserDetails currentUser={currentUser} />} />
+            <Route path="/testing250524/settings" element={<UserSettings />} />
+            <Route path="/testing250524/cart" element={<UserCart />} />
+            <Route path="/testing250524/search" element={<SearchResults />} />
           <Route path="*" element={<Navigate to="/testing250524/" />} />
         </Routes>
         <Footer />
