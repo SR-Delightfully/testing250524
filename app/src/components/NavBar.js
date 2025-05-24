@@ -36,7 +36,7 @@ const NavBar = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      navigate(`/testing250524/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchQuery("");
       setSearchResults([]);
       setSearchVisible(false);
@@ -45,7 +45,7 @@ const NavBar = () => {
 
   const handleSignOut = () => {
     logoutUser();
-    navigate("/login");
+    navigate("/testing250524/login");
   };
 
   const toggleDropDown = () => {
@@ -63,10 +63,10 @@ const NavBar = () => {
           />
         </a>
         <ol id="nav-bar-tabs">
-          <li><Link to="/"><button>Home</button></Link></li>
-          <li><Link to="/about"><button>About</button></Link></li>
-          <li><Link to="/shop"><button>Shop</button></Link></li>
-          <li><Link to="/explore"><button>Explore</button></Link></li>
+          <li><Link to="/testing250524/"><button>Home</button></Link></li>
+          <li><Link to="/testing250524/about"><button>About</button></Link></li>
+          <li><Link to="/testing250524/shop"><button>Shop</button></Link></li>
+          <li><Link to="/testing250524/explore"><button>Explore</button></Link></li>
         </ol>
       </div>
 
@@ -114,7 +114,7 @@ const NavBar = () => {
                 {searchResults.slice(0, 5).map((user) => (
                   <li key={user.user_id} style={{ marginBottom: "0.5rem" }}>
                     <Link
-                      to={`/profile/${user.user_name}`}
+                      to={`/testing250524/profile/${user.user_name}`}
                       onClick={() => {
                         setSearchQuery("");
                         setSearchResults([]);
@@ -128,7 +128,7 @@ const NavBar = () => {
                 <li>
                   <button
                     onClick={() => {
-                      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+                      navigate(`/testing250524/search?q=${encodeURIComponent(searchQuery)}`);
                       setSearchQuery("");
                       setSearchResults([]);
                       setSearchVisible(false);
@@ -148,7 +148,7 @@ const NavBar = () => {
             )}
           </div>
 
-          <span><Link to="/cart">🛒</Link></span>
+          <span><Link to="/testing250524/cart">🛒</Link></span>
         </div>
 
         <div id="nav-bar-user-drop">
@@ -199,7 +199,7 @@ const NavBar = () => {
           )}
 
           {currentUser && (
-            <Link to={`/profile/${currentUser.user_name}`}>
+            <Link to={`/testing250524/profile/${currentUser.user_name}`}>
               <img id="pfp" src={currentUser.user_pfp_src} alt="pfp" />
             </Link>
           )}
