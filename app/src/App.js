@@ -73,8 +73,6 @@ const App = () => {
       <div id="wrapper">
         <NavBar />
         <Routes>
-          <Route path="/testing250524/login" element={<Login />} />
-          <Route path="/testing250524/sign-up" element={<Signup />} />
           <Route path="/testing250524/resetPassword" element={<ResetPassword />} />
             <Route path="/testing250524/" element={<Home />} />
             <Route path="/testing250524/home" element={<Home />} />
