@@ -19,13 +19,11 @@ const Home = () => {
             setError(null);
 
             try {
-                console.log("Loading carousel data...");
                 const response = await fetch(ProcessingInstruction.env.PUBLIC_URL + '/data/catalog.json');
                 const catalog = await response.json();
 
                 setCarouselData(catalog.carouselData || []);
             } catch (err) {
-                console.error('Failed to load carousel', err);
                 setError('Failed to load carousel');
             } finally {
                 setLoading(false);
@@ -70,7 +68,6 @@ const Home = () => {
                             backgroundColor: `var(--color-${carouselData[currentSlideIndex]?.background_color})`
                         }}
                     >
-                        {console.log("Current background color:", carouselData[currentSlideIndex]?.background_color)}
 
                          {carouselData.length > 0 && (
                             <>

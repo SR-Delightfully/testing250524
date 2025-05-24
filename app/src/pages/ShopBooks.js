@@ -4,14 +4,11 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import {fetchData} from "../data/fetchWrapper";
 
-console.log("clearing all the contents of the JSON file");
-
 const ShopBooks = () => {
     const [books, setBooks] = useState([]);
     useEffect(() => {
         async function loadToJson() {
             let allBooks = [];
-            console.log("Loading the books");
 
             for (let i = 1; i < 26; i++) { 
                 try {
@@ -30,17 +27,9 @@ const ShopBooks = () => {
                     }));
 
                     allBooks = [...allBooks, ...result];
-                    console.log(`Fetched page ${i}`);
                 } catch (error) {
                     console.error(`Error fetching page ${i} : ${error}`);
                 }
-            }
-
-            try {
-                console.log(JSON.stringify(allBooks, null, 2));
-                console.log('Saved to bookCatalog.json!');
-            } catch (error) {
-                console.log("error saving to JSON file");
             }
         }
         loadToJson();
@@ -48,7 +37,6 @@ const ShopBooks = () => {
 
     useEffect(() => {
         async function loadBooks() {
-            console.log("Loading the books");
             const uri = './data/bookCatalog.json'; 
             const bookCatalog = await fetchData(uri);
             setBooks(bookCatalog.books);

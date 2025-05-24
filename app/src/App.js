@@ -17,27 +17,6 @@ import SearchResults from "./pages/SearchResults";
 
 const App = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
-  const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   const fetchAndSetUser = async () => {
-  //     try {
-  //       const res = await fetch(ProcessingInstruction.env.PUBLIC_URL + "/data/users.json");
-  //       const data = await res.json();
-  //       const blobUser = data.users.find(user => user.user_name === "blob");
-  //       if (blobUser) {
-  //         setCurrentUser(blobUser);
-  //         localStorage.setItem("loggedInUser", JSON.stringify(blobUser));
-  //       }
-  //     } catch (err) {
-  //       console.error("Failed to load users:", err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchAndSetUser();
-  // }, [setCurrentUser]);
 
   setCurrentUser({
             "user_id": 2, 
@@ -61,10 +40,6 @@ const App = () => {
              "user_cart": [],
             "user_wishlist": []
         });
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <Router>

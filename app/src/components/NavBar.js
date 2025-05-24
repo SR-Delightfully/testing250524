@@ -167,7 +167,7 @@ const NavBar = () => {
                 <li className="drop-option"><HashLink smooth to="/settings#user-settings">View Settings</HashLink></li>
                 <li className="drop-option"><HashLink smooth to="/settings#accessibility-settings">View Accessibility</HashLink></li>
                 <li className="drop-option"><HashLink smooth to="/settings#connection-settings">View More Settings</HashLink></li>
-                <li className="drop-option"><button onClick={handleSignOut}>Sign Out</button></li>
+                {/* <li className="drop-option"><button onClick={handleSignOut}>Sign Out</button></li> */}
               </ul>
             </span>
           ) : (

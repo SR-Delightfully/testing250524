@@ -12,7 +12,6 @@ async function fetchData(resourceUri) {
       return data;
  
     } catch (error) {
-         console.log(error.message);
          return null;
     }
  }

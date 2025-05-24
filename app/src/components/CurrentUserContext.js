@@ -12,8 +12,7 @@ export const CurrentUserProvider = ({ children }) => {
         setCurrentUser(JSON.parse(storedUser));
       }
     } catch (e) {
-      console.error("Error parsing loggedInUser from localStorage:", e);
-      localStorage.removeItem("loggedInUser"); // Remove bad data
+      localStorage.removeItem("loggedInUser"); 
     }
   }, []);
 
@@ -22,7 +21,6 @@ export const CurrentUserProvider = ({ children }) => {
       localStorage.setItem("loggedInUser", JSON.stringify(user));
       setCurrentUser(user);
     } else {
-      console.warn("loginUser was called with undefined user");
     }
   };
 
