@@ -21,25 +21,48 @@ const App = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchAndSetUser = async () => {
-      try {
-        const res = await fetch(ProcessingInstruction.env.PUBLIC_URL + "/data/users.json");
-        const data = await res.json();
-        const blobUser = data.users.find(user => user.user_name === "blob");
-        if (blobUser) {
-          setCurrentUser(blobUser);
-          localStorage.setItem("loggedInUser", JSON.stringify(blobUser));
-        }
-      } catch (err) {
-        console.error("Failed to load users:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchAndSetUser = async () => {
+  //     try {
+  //       const res = await fetch(ProcessingInstruction.env.PUBLIC_URL + "/data/users.json");
+  //       const data = await res.json();
+  //       const blobUser = data.users.find(user => user.user_name === "blob");
+  //       if (blobUser) {
+  //         setCurrentUser(blobUser);
+  //         localStorage.setItem("loggedInUser", JSON.stringify(blobUser));
+  //       }
+  //     } catch (err) {
+  //       console.error("Failed to load users:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchAndSetUser();
-  }, [setCurrentUser]);
+  //   fetchAndSetUser();
+  // }, [setCurrentUser]);
+
+  setCurrentUser({
+            "user_id": 2, 
+            "user_name": "boop",
+            "user_password": "qwerty",
+            "user_email": "boop@boop.ca",
+            "user_phone": "000-000-0000",
+            "user_about_me": "get booped",
+            "user_friends": [],
+            "user_followers": ["blob"],
+            "user_following": ["blobby"],
+            "user_likes": [],
+            "user_favorite_song": "",
+            "user_banner_src":"https://i.imgur.com/x0HR8cj.png",
+            "user_pfp_src": "https://i.imgur.com/f7obwfH.png",
+            "user_books": [{"item_id": 1}, {"item_id": 1},{"item_id": 1}],
+            "user_music":{
+                "CDs": [{"item_id": 3}, {"item_id": 3}, {"item_id": 3}],
+                "Vinyls": [{"item_id": 2}, {"item_id": 6}, {"item_id": 7 }]
+            },
+             "user_cart": [],
+            "user_wishlist": []
+        });
 
   if (loading) {
     return <div>Loading...</div>;
