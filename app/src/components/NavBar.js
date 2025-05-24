@@ -43,11 +43,6 @@ const NavBar = () => {
     }
   };
 
-  const handleSignOut = () => {
-    logoutUser();
-    navigate("/testing250524/login");
-  };
-
   const toggleDropDown = () => {
     setDropDownOpen(prev => !prev);
   };
@@ -192,8 +187,6 @@ const NavBar = () => {
                     User dropdown ➤
                   </button>
                 </li>
-                <li className="drop-option"><Link to="/login">Login</Link></li>
-                <li className="drop-option"><Link to="/signup">Sign Up</Link></li>
               </ul>
             </span>
           )}

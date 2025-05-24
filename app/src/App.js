@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { CurrentUserContext } from "./components/CurrentUserContext";
 
 import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import About from "./pages/About";
 import Shop from "./pages/Shop";
 import Explore from "./pages/Explore";
