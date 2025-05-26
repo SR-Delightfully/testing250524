@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/testing250524/static/css/main.44c4cabb.css",
-    "main.js": "/testing250524/static/js/main.be3489f6.js",
+    "main.js": "/testing250524/static/js/main.3520a5e2.js",
     "static/media/carousel-placeholder.jpg": "/testing250524/static/media/carousel-placeholder.902fc854d8be1ed303db.jpg",
     "index.html": "/testing250524/index.html",
     "main.44c4cabb.css.map": "/testing250524/static/css/main.44c4cabb.css.map",
-    "main.be3489f6.js.map": "/testing250524/static/js/main.be3489f6.js.map"
+    "main.3520a5e2.js.map": "/testing250524/static/js/main.3520a5e2.js.map"
   },
   "entrypoints": [
     "static/css/main.44c4cabb.css",
-    "static/js/main.be3489f6.js"
+    "static/js/main.3520a5e2.js"
   ]
 }
