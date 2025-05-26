@@ -12,7 +12,7 @@ const ProductDetails = () => {
     useEffect(() => {
   const loadProduct = async () => {
     try {
-      const response = await fetch('/data/catalog.json');
+      const response = await fetch(process.env.PUBLIC_URL + '/data/catalog.json');
       const catalog = await response.json();
 
       const productFound = catalog.products.find((p) =>

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { CurrentUserContext } from "./CurrentUserContext";
-import axios from "axios";
 
 const NavBar = () => {
   const { currentUser, logoutUser } = useContext(CurrentUserContext);
@@ -20,10 +19,11 @@ const NavBar = () => {
     }
 
     const delayDebounce = setTimeout(() => {
-      axios.get("/api/users")
-        .then(res => {
-          const filtered = res.data.filter(user =>
-            user.user_name.toLowerCase().includes(searchQuery.toLowerCase())
+      fetch(process.env.PUBLIC_URL + "/data/users.json")
+        .then(res => res.json())
+        .then(data => {
+          const filtered = data.users.filter(user =>
+            (user.user_name || "").toLowerCase().includes(searchQuery.toLowerCase())
           );
           setSearchResults(filtered);
         })
@@ -33,10 +33,15 @@ const NavBar = () => {
     return () => clearTimeout(delayDebounce);
   }, [searchQuery]);
 
+  const handleSignOut = () => {
+    logoutUser();
+    navigate("/login");
+  };
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/testing250524/search?q=${encodeURIComponent(searchQuery)}`);
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchQuery("");
       setSearchResults([]);
       setSearchVisible(false);
@@ -50,18 +55,18 @@ const NavBar = () => {
   return (
     <header id="nav-bar">
       <div id="nav-bar-left">
-        <a href="/">
+        <Link to="#/">
           <img
             id="logo"
             src="https://cdn-icons-png.flaticon.com/512/812/812680.png"
             alt="logo"
           />
-        </a>
+        </Link>
         <ol id="nav-bar-tabs">
-          <li><Link to="/testing250524/"><button>Home</button></Link></li>
-          <li><Link to="/testing250524/about"><button>About</button></Link></li>
-          <li><Link to="/testing250524/shop"><button>Shop</button></Link></li>
-          <li><Link to="/testing250524/explore"><button>Explore</button></Link></li>
+          <li><Link to="/"><button>Home</button></Link></li>
+          <li><Link to="/about"><button>About</button></Link></li>
+          <li><Link to="/shop"><button>Shop</button></Link></li>
+          <li><Link to="/explore"><button>Explore</button></Link></li>
         </ol>
       </div>
 
@@ -109,7 +114,7 @@ const NavBar = () => {
                 {searchResults.slice(0, 5).map((user) => (
                   <li key={user.user_id} style={{ marginBottom: "0.5rem" }}>
                     <Link
-                      to={`/testing250524/profile/${user.user_name}`}
+                      to={`/profile/${user.user_name}`}
                       onClick={() => {
                         setSearchQuery("");
                         setSearchResults([]);
@@ -123,7 +128,7 @@ const NavBar = () => {
                 <li>
                   <button
                     onClick={() => {
-                      navigate(`/testing250524/search?q=${encodeURIComponent(searchQuery)}`);
+                      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
                       setSearchQuery("");
                       setSearchResults([]);
                       setSearchVisible(false);
@@ -143,7 +148,7 @@ const NavBar = () => {
             )}
           </div>
 
-          <span><Link to="/testing250524/cart">🛒</Link></span>
+          <span><Link to="/cart">🛒</Link></span>
         </div>
 
         <div id="nav-bar-user-drop">
@@ -167,7 +172,7 @@ const NavBar = () => {
                 <li className="drop-option"><HashLink smooth to="/settings#user-settings">View Settings</HashLink></li>
                 <li className="drop-option"><HashLink smooth to="/settings#accessibility-settings">View Accessibility</HashLink></li>
                 <li className="drop-option"><HashLink smooth to="/settings#connection-settings">View More Settings</HashLink></li>
-                {/* <li className="drop-option"><button onClick={handleSignOut}>Sign Out</button></li> */}
+                <li className="drop-option"><button onClick={handleSignOut}>Sign Out</button></li>
               </ul>
             </span>
           ) : (
@@ -187,13 +192,15 @@ const NavBar = () => {
                     User dropdown ➤
                   </button>
                 </li>
+                <li className="drop-option"><Link to="/login">Login</Link></li>
+                <li className="drop-option"><Link to="/signup">Sign Up</Link></li>
               </ul>
             </span>
           )}
 
           {currentUser && (
-            <Link to={`/testing250524/profile/${currentUser.user_name}`}>
-              <img id="pfp" src={currentUser.user_pfp_src} alt="pfp" />
+            <Link to={`/profile/${currentUser.user_name}`}>
+              <img id="pfp" src={currentUser.user_pfp_src || "default-avatar.png"} alt="pfp" />
             </Link>
           )}
         </div>

@@ -18,12 +18,12 @@ const UserDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRes = await fetch('/data/users.json');
+        const userRes = await fetch(process.env.PUBLIC_URL + '/data/users.json');
         const userData = await userRes.json();
-        const blobUser = userData.users.find(user => user.user_name === "blob");
+        const blobUser = userData.users.find(user => user.user_name === "boop");
         setProfileUser(blobUser);
 
-        const productRes = await fetch('/data/catalog.json');
+        const productRes = await fetch(process.env.PUBLIC_URL + '/data/catalog.json');
         const productData = await productRes.json();
         setProducts(productData.products);
       } catch (error) {

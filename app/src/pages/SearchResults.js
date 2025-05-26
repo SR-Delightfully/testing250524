@@ -8,7 +8,7 @@ const StaticSearchResults = ({ query }) => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await fetch('/data/searchResults.json');
+        const res = await fetch(process.env.PUBLIC_URL + '/data/searchResults.json');
         const data = await res.json();
 
         const filteredUsers = data.users.filter(user =>
